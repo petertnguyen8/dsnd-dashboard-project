@@ -47,41 +47,43 @@ class ReportDropdown(Dropdown):
         # call the employee_events method
         # that returns the user-type's
         # names and ids
+        return model.get_names_and_ids(entity_id)
+        
         
 
 
 
 # Create a subclass of base_components/BaseComponent
 # called `Header`
-#### YOUR CODE HERE
+class Header(BaseComponent):
 
     # Overwrite the `build_component` method
     # Ensure the method has the same parameters
     # as the parent class
-    #### YOUR CODE HERE
+    def build_component(self, entity_id, model):
         
         # Using the model argument for this method
         # return a fasthtml H1 objects
         # containing the model's name attribute
-        #### YOUR CODE HERE
+        return H1(model.name)
           
 
 # Create a subclass of base_components/MatplotlibViz
 # called `LineChart`
-#### YOUR CODE HERE
+class LineChart(MatplotlibViz):
     
     # Overwrite the parent class's `visualization`
     # method. Use the same parameters as the parent
-    #### YOUR CODE HERE
+    def visualization(self, model, asset_id):
     
 
         # Pass the `asset_id` argument to
         # the model's `event_counts` method to
         # receive the x (Day) and y (event count)
-        #### YOUR CODE HERE
+        model.get_event_counts(asset_id)
         
         # Use the pandas .fillna method to fill nulls with 0
-        #### YOUR CODE HERE
+        df = df.fillna(0) #???? idk if this is right where is the dataframe? 
         
         # User the pandas .set_index method to set
         # the date column as the index
