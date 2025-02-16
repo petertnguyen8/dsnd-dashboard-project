@@ -47,7 +47,7 @@ class ReportDropdown(Dropdown):
         # call the employee_events method
         # that returns the user-type's
         # names and ids
-        return model.get_names_and_ids(entity_id)
+        
         
         
 
