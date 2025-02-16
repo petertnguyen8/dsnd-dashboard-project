@@ -81,10 +81,10 @@ class LineChart(MatplotlibViz):
         # Pass the `asset_id` argument to
         # the model's `event_counts` method to
         # receive the x (Day) and y (event count)
-        model.get_event_counts(asset_id)
+        model.event_counts(asset_id)
         
         # Use the pandas .fillna method to fill nulls with 0
-        df = df.fillna(0) #???? idk if this is right where is the dataframe? 
+        
         
         # User the pandas .set_index method to set
         # the date column as the index
