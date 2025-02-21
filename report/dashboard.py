@@ -157,17 +157,18 @@ class BarChart(MatplotlibViz):
         
         # Below, create a `pred` variable set to
         # the number we want to visualize
-        #
         # If the model's name attribute is "team"
         # We want to visualize the mean of the predict_proba output
-        #### YOUR CODE HERE
+        if model.name == "team":
+            pred = predict_proba.mean()
             
         # Otherwise set `pred` to the first value
         # of the predict_proba output
-        #### YOUR CODE HERE
+        else:
+            pred = predict_proba[0]
         
         # Initialize a matplotlib subplot
-        #### YOUR CODE HERE
+        fig, ax = plt.subplots()
         
         # Run the following code unchanged
         ax.barh([''], [pred])
@@ -179,8 +180,7 @@ class BarChart(MatplotlibViz):
         
         # pass the axis variable
         # to the `.set_axis_styling`
-        # method
-        #### YOUR CODE HERE
+        ax.set_axis_styling(border_color='black', font_color='black')
  
 # Create a subclass of combined_components/CombinedComponent
 # called Visualizations       
