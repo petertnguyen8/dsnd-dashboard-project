@@ -37,7 +37,7 @@ class ReportDropdown(Dropdown):
         
         # Return the output from the
         # parent class's build_component method
-        return super().build_component(model)
+        return super().build_component(entity_id, model)
     
     # Overwrite the `component_data` method
     # Ensure the method uses the same parameters
