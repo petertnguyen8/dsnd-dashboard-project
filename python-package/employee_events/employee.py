@@ -27,7 +27,7 @@ class Employee(QueryBase):
         # 2. The employee's id
         # This query should return the data
         # for all employees in the database
-        query = f"SELECT full_name, id FROM {self.name}"
+        query = f"SELECT CONCAT(first_name, ' ', last_name) AS full_name, employee_id FROM {self.name}"
         return self.query(query)
     
 
@@ -43,7 +43,7 @@ class Employee(QueryBase):
         # Use f-string formatting and a WHERE filter
         # to only return the full name of the employee
         # with an id equal to the id argument
-        query = f"SELECT full_name FROM {self.name} WHERE id = {id}"
+        query = f"SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM {self.name} WHERE employee_id = {id}"
         return self.query(query)
         
 

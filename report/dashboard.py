@@ -30,9 +30,8 @@ class ReportDropdown(Dropdown):
     # ensuring it has the same parameters
     # as the Report parent class's method
     def build_component(self, entity_id, model):
-        
-        #  Set the `label` attribute so it is set
-        #  to the `name` attribute for the model
+        # Set the `label` attribute so it is set
+        # to the `name` attribute for the model
         self.label = model.name
         
         # Return the output from the
@@ -47,7 +46,7 @@ class ReportDropdown(Dropdown):
         # call the employee_events method
         # that returns the user-type's
         # names and ids
-        return model.names(entity_id)
+        return model.names()
         
 
 # Create a subclass of base_components/BaseComponent
@@ -71,9 +70,7 @@ class LineChart(MatplotlibViz):
     
     # Overwrite the parent class's `visualization`
     # method. Use the same parameters as the parent
-    def visualization(self, model, asset_id):
-    
-
+    def visualization(self, asset_id, model):
         # Pass the `asset_id` argument to
         # the model's `event_counts` method to
         # receive the x (Day) and y (event count)
@@ -82,8 +79,7 @@ class LineChart(MatplotlibViz):
         # Use the pandas .fillna method to fill nulls with 0
         df.fillna(0, inplace=True)
         
-        
-        # User the pandas .set_index method to set
+        # Use the pandas .set_index method to set
         # the date column as the index
         df.set_index('date', inplace=True)
         
@@ -94,7 +90,6 @@ class LineChart(MatplotlibViz):
         # in the dataframe to cumulative counts
         df = df.cumsum()
         
-        
         # Set the dataframe columns to the list
         # ['Positive', 'Negative']
         df.columns = ['Positive', 'Negative']
@@ -104,11 +99,11 @@ class LineChart(MatplotlibViz):
         # to variables
         fig, ax = plt.subplots()
         
-        # call the .plot method for the
+        # Call the .plot method for the
         # cumulative counts dataframe
         df.plot(ax=ax)
         
-        # pass the axis variable
+        # Pass the axis variable
         # to the `.set_axis_styling`
         # method
         # Use keyword arguments to set 
@@ -133,7 +128,7 @@ class BarChart(MatplotlibViz):
 
     # Overwrite the parent class `visualization` method
     # Use the same parameters as the parent
-    def visualization(self, model, asset_id):
+    def visualization(self, asset_id, model):
 
         # Using the model and asset_id arguments
         # pass the `asset_id` to the `.model_data` method
