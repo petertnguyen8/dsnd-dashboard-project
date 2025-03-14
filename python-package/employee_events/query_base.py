@@ -33,14 +33,15 @@ class QueryBase(QueryMixin):
         # of id columns used for joining
         # order by the event_date column
         query = f"""
-                    SELECT event_date
-                         , SUM(positive_events) positive_events
-                         , SUM(negative_events) negative_events
-                    FROM {self.name}
-                    WHERE {self.name}.id = {id}
-                    GROUP BY event_date
-                    ORDER BY event_date
-                """
+            SELECT event_date
+                 , SUM(positive_events) AS positive_events
+                 , SUM(negative_events) AS negative_events
+            FROM {self.name}
+            JOIN employee_events Using({self.name}_id)
+            WHERE {self.name}.{self.name}_id = {id}
+            GROUP BY event_date
+            ORDER BY event_date
+        """
         result = self.pandas_query(query)
         return result
             
@@ -61,8 +62,7 @@ class QueryBase(QueryMixin):
                     SELECT note_date, note
                     FROM notes
                     JOIN {self.name}
-                    ON notes.employee_id = {self.name}.id
-                    WHERE {self.name}.id = {id}
+                    ON notes.employee_id = {self.name}.employee_id
                 """
         
         result = self.pandas_query(query)

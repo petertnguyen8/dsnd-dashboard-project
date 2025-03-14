@@ -81,7 +81,7 @@ class LineChart(MatplotlibViz):
         
         # Use the pandas .set_index method to set
         # the date column as the index
-        df.set_index('date', inplace=True)
+        df.set_index('event_date', inplace=True)
         
         # Sort the index
         df.sort_index(inplace=True)
