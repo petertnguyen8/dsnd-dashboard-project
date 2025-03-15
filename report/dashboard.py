@@ -154,12 +154,11 @@ class BarChart(MatplotlibViz):
         # If the model's name attribute is "team"
         # We want to visualize the mean of the predict_proba output
         if model.name == "team":
-            pred = predict_proba.mean()
-            
+            pred = pred.mean()
         # Otherwise set `pred` to the first value
         # of the predict_proba output
         else:
-            pred = predict_proba[0]
+            pred = pred[0]
         
         # Initialize a matplotlib subplot
         fig, ax = plt.subplots()
