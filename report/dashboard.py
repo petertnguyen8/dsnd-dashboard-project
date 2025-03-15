@@ -70,11 +70,11 @@ class LineChart(MatplotlibViz):
     
     # Overwrite the parent class's `visualization`
     # method. Use the same parameters as the parent
-    def visualization(self, asset_id, model):
+    def visualization(self, entity_id, model):
         # Pass the `asset_id` argument to
         # the model's `event_counts` method to
         # receive the x (Day) and y (event count)
-        df = model.event_counts(asset_id)
+        df = model.event_counts(entity_id)
         
         # Use the pandas .fillna method to fill nulls with 0
         df.fillna(0, inplace=True)
@@ -110,11 +110,14 @@ class LineChart(MatplotlibViz):
         # the border color and font color to black. 
         # Reference the base_components/matplotlib_viz file 
         # to inspect the supported keyword arguments
-        ax.set_axis_styling(border_color='black', font_color='black')
+        self.set_axis_styling(ax, bordercolor='black', fontcolor='black')
         
         # Set title and labels for x and y axis
         ax.set_title('Cumulative Event Counts', fontsize=20)
         ax.set_xlabel('Date', fontsize=15)
+        ax.set_ylabel('Event Counts', fontsize=15)
+
+        return fig
 
 
 # Create a subclass of base_components/MatplotlibViz
@@ -128,13 +131,13 @@ class BarChart(MatplotlibViz):
 
     # Overwrite the parent class `visualization` method
     # Use the same parameters as the parent
-    def visualization(self, asset_id, model):
+    def visualization(self, entity_id, model):
 
         # Using the model and asset_id arguments
         # pass the `asset_id` to the `.model_data` method
         # to receive the data that can be passed to the machine
         # learning model
-        data = model.model_data(asset_id)
+        data = model.model_data(entity_id)
         
         # Using the predictor class attribute
         # pass the data to the `predict_proba` method
@@ -165,13 +168,12 @@ class BarChart(MatplotlibViz):
         ax.barh([''], [pred])
         ax.set_xlim(0, 1)
         ax.set_title('Predicted Recruitment Risk', fontsize=20)
-
-    def new_method(self, entity_id, model):
-        return model.get_names_and_ids(entity_id)
         
         # pass the axis variable
         # to the `.set_axis_styling`
-        ax.set_axis_styling(border_color='black', font_color='black')
+        self.set_axis_styling(ax, bordercolor='black', fontcolor='black')
+
+        return fig
  
 # Create a subclass of combined_components/CombinedComponent
 # called Visualizations       
