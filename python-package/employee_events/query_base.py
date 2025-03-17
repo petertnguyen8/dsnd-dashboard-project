@@ -59,11 +59,13 @@ class QueryBase(QueryMixin):
         # so the query returns the notes
         # for the table name in the `name` class attribute
         query = f"""
-                    SELECT note_date, note
-                    FROM notes
-                    JOIN {self.name}
-                    ON notes.employee_id = {self.name}.employee_id
-                """
+            SELECT note_date, note
+            FROM notes
+            JOIN {self.name}
+                ON notes.{self.name}_id = {self.name}.{self.name}_id
+            WHERE {self.name}.{self.name}_id = {id}
+            ORDER BY note_date
+            """
         
         result = self.pandas_query(query)
         return result

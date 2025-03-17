@@ -165,7 +165,7 @@ class BarChart(MatplotlibViz):
         
         # Run the following code unchanged
         ax.barh([''], [pred])
-        ax.set_xlim(0, 1)
+        ax.set_xlim(0, 0.5)
         ax.set_title('Predicted Recruitment Risk', fontsize=20)
         
         # pass the axis variable
